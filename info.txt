@@ -1,0 +1,29 @@
+si se quiere realizar una modificación y se manda de dato el mismo que ya tenia, dice que lo modificó, pero si se trata de un dato
+que debe ser único entonces va a decir que ya existe uno con esa informacion
+
+en el controller inquilino es necesario que se mande como dato tambien si esta o no activo
+las variables que recibe el inquilino no las dejé como en el word, sino como el valor que tienen en la base de datos
+no me esforce en verificar que el documento sea solo numeros ni que activo sea un tinyint ni similares
+
+el controller propiedad recibe los datos como post
+
+puede haber propiedaddes con todos los datos iguales excepto el id, ya que no se especifica ningun dato como único
+
+en las listas muestro todos los datos incluyendo el id
+
+en reservas dice que todos los campos son requeridos, pero el de valor total directamente hice que no lo reciba ya que se calcula haciendo la cuenta
+
+no revise en reservas que la fecha ingresada para hacer una reserva sea mayor a la fecha actual, ni se si deberia hacerlo
+
+si se cambia el valor por noche de una propiedad no se actualiza el precio de la reserva ya que se hizo a ese valor
+pero si se edita la reserva cambiando la propiedad aunque sea por la misma se va a actualizar el precio
+
+reviso que la propiedad esté disponible y el inquilino activo al crear la reserva y tambien al editarla
+
+revisar que no se pueda eliminar las localidades ni tipo localidad si es que se encuentran en alguna propiedad
+y que no se pueda eliminar una propiedad ni inquilino si se encuentra en alguna reserva
+
+no pude revisar la funcion de historial de inquilinos porque todavia no cree las reservas
+
+modificar el archivo de conexion para que tenga un try
+
