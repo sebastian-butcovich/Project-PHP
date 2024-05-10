@@ -47,7 +47,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Inquilino agregado correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -104,7 +104,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Inquilino modificado correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -138,7 +138,7 @@
                 $response->getBody()->write(json_encode(['OK' => 'Inquilino eliminado correctamente']));
                 return $response->withStatus(200); 
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -158,7 +158,7 @@
                 $response->getBody()->write(json_encode(['OK' => $resultados]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -174,7 +174,7 @@
                 $response->getBody()->write(json_encode(['OK' => $consulta->fetch(PDO::FETCH_ASSOC)]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -194,7 +194,7 @@
                 $response->getBody()->write(json_encode(['OK' => $resultados]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }

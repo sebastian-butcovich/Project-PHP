@@ -138,7 +138,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Reserva editada correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }

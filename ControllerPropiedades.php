@@ -71,7 +71,9 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (isset($data['domicilio']) && isset($data['localidad_id']) && isset($data['cantidad_habitaciones']) && isset($data['cantidad_banios']) && isset($data['cochera']) && isset($data['cantidad_huespedes']) && isset($data['fecha_inicio_disponibilidad']) && isset($data['cantidad_dias']) && isset($data['disponible']) && isset($data['valor_noche']) && isset($data['tipo_propiedad_id']) && isset($data['imagen']) && isset($data['tipo_imagen'])){
+            if (isset($data['domicilio']) && isset($data['localidad_id']) && isset($data['cantidad_habitaciones']) && 
+            isset($data['cantidad_banios']) && isset($data['cochera']) && isset($data['cantidad_huespedes']) 
+            && isset($data['fecha_inicio_disponibilidad']) && isset($data['cantidad_dias']) && isset($data['disponible']) && isset($data['valor_noche']) && isset($data['tipo_propiedad_id']) && isset($data['imagen']) && isset($data['tipo_imagen'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envia ningun dato para modificar']));
                 return $response->withStatus(400);
             }
@@ -141,7 +143,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Propiedad editada correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -199,7 +201,7 @@
                                 $src = $src . "" . $valor . " = " . "'$data[$valor]'";
                                 $primero = false;
                             }
-                            else $src = $src . " AND " . $valor . " = " . "$data[$valor]";
+                            else $src = $src . " AND " . $valor . " = " . "'$data[$valor]'";
                         }
                     }
                 }
