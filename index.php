@@ -12,13 +12,21 @@
     
     $app = AppFactory::create();
     $app->addBodyParsingMiddleware();
+    $app->addRoutingMiddleware();
     $app->addErrorMiddleware(true,true,true);
     $app->addRoutingMiddleware();
+
+    $app->add( function ($request, $handler) {
+        $response = $handler->handle($request);
     
-    $app->get('/', function (Request $request, Response $response, $args) {
-        $response->getBody()->write("Hello world!");
-        return $response;
+        return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+            ->withHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE')
+            ->withHeader('Content-Type', 'application/json')
+        ;
     });
+
 
     $app->post('/localidades', \ControllerLocalidades::class . ':Crear');
     $app->put('/localidades/{id}', \ControllerLocalidades::class . ':Editar');
