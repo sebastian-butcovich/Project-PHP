@@ -9,9 +9,8 @@
 
         public static function Crear(Request $request, Response $response){
             $data =$request->getParsedBody();
-            //var_dump($data['nombre']);
-            if (!empty($data['apellido']) || !empty($data['nombre']) || !empty($data['documento']) || 
-            !empty($data['email']) || !empty($data['activo'])){
+            if (empty($data['apellido']) || empty($data['nombre']) || empty($data['documento']) || 
+            empty($data['email']) || empty($data['activo'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'Faltan campos requeridos para agregar a este inquilino']));
                 return $response->withStatus(400);
             }
@@ -24,7 +23,6 @@
                 try {
                     $con = new Conexion();
                     $c = $con->establecerConexion();
-
                     $src = "SELECT * FROM inquilinos WHERE documento = :documento";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':documento', $data['documento']);
@@ -55,8 +53,8 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (!empty($data['apellido']) && !empty($data['nombre']) && !empty($data['documento']) && 
-            !empty($data['email']) && !empty($data['activo'])){
+            if (empty($data['apellido']) && empty($data['nombre']) && empty($data['documento']) && 
+            empty($data['email']) && empty($data['activo'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envia ningun dato para modificar']));
                 return $response->withStatus(400);
             }
@@ -69,7 +67,6 @@
                 try {
                     $con = new Conexion();
                     $c = $con->establecerConexion();
-
                     $src = "SELECT * FROM inquilinos WHERE id = :id";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':id', $args['id']);
@@ -80,7 +77,7 @@
                     }
                     $datosInquilino = $consulta->fetch(PDO::FETCH_ASSOC);
 
-                    if (isset($data['documento'])){
+                    if (!empty($data['documento'])){
                         $src = "SELECT * FROM inquilinos WHERE documento = :documento";
                         $consulta = $c->prepare($src);
                         $consulta->bindParam(':documento', $data['documento']);
@@ -114,7 +111,6 @@
             try {
                 $con = new Conexion();
                 $c = $con->establecerConexion();
-
                 $src = "SELECT * FROM inquilinos WHERE id = " . $args['id'] . "";
                 $consulta = $c->prepare($src);
                 $consulta->execute();
@@ -147,7 +143,6 @@
             try {
                 $con = new Conexion();
                 $c = $con->establecerConexion();
-
                 $src = "SELECT * FROM inquilinos";
                 $consulta = $c->query($src);
                 $resultados = array();
@@ -167,7 +162,6 @@
             try {
                 $con = new Conexion();
                 $c = $con->establecerConexion();
-
                 $src = "SELECT * FROM inquilinos WHERE id = " . $args['id'] . "";
                 $consulta = $c->query($src);
                 $response->getBody()->write(json_encode(['OK' => $consulta->fetch(PDO::FETCH_ASSOC)]));
@@ -183,7 +177,6 @@
             try {
                 $con = new Conexion();
                 $c = $con->establecerConexion();
-
                 $src = "SELECT * FROM reservas WHERE inquilino_id = " . $args['idInquilino'];
                 $consulta = $c->query($src);
                 $resultados = array();

@@ -23,7 +23,6 @@
                 try {
                     $con = new Conexion();
                     $c = $con->establecerConexion();
-
                     $src = "SELECT * FROM localidades WHERE nombre = :nombre";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':nombre', $data['nombre']);
@@ -61,7 +60,6 @@
                 try {
                     $con = new Conexion();
                     $c = $con->establecerConexion();
-
                     $src = "SELECT * FROM localidades WHERE id = :id";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':id', $args['id']);
@@ -70,7 +68,6 @@
                         $response->getBody()->write(json_encode(['Not Found'=>'No se encuentra una localidad con ese id']));
                         return $response->withStatus(404);
                     }
-
                     $src = "SELECT * FROM localidades WHERE nombre = :nombre";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':nombre', $data['nombre']);
@@ -99,7 +96,6 @@
             try {
                 $con = new Conexion();
                 $c = $con->establecerConexion();
-
                 $src = "SELECT * FROM localidades WHERE id = " . $args['id'] . "";
                 $consulta = $c->prepare($src);
                 $consulta->execute();

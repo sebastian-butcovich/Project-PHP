@@ -10,9 +10,9 @@
 
         public static function Crear(Request $request, Response $response){
             $data =$request->getParsedBody();
-            if (!empty($data['domicilio']) || !empty($data['localidad_id']) || !empty($data['cantidad_huespedes']) || 
-            !empty($data['fecha_inicio_disponibilidad']) || !empty($data['cantidad_dias']) || !empty($data['disponible']) 
-            || !empty($data['valor_noche']) || !empty($data['tipo_propiedad_id'])){
+            if (empty($data['domicilio']) || empty($data['localidad_id']) || empty($data['cantidad_huespedes']) || 
+            empty($data['fecha_inicio_disponibilidad']) || empty($data['cantidad_dias']) || empty($data['disponible']) 
+            || empty($data['valor_noche']) || empty($data['tipo_propiedad_id'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'Faltan campos requeridos para agregar esta propiedad']));
                 return $response->withStatus(400);
             }
@@ -71,10 +71,10 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (!empty($data['domicilio']) && !empty($data['localidad_id']) && !empty($data['cantidad_habitaciones']) && 
-            !empty($data['cantidad_banios']) && !empty($data['cochera']) && !empty($data['cantidad_huespedes']) 
-            && !empty($data['fecha_inicio_disponibilidad']) && !empty($data['cantidad_dias']) && !empty($data['disponible']) && 
-            !empty($data['valor_noche']) && !empty($data['tipo_propiedad_id']) && !empty($data['imagen']) && !empty($data['tipo_imagen'])){
+            if (empty($data['domicilio']) && empty($data['localidad_id']) && empty($data['cantidad_habitaciones']) && 
+            empty($data['cantidad_banios']) && empty($data['cochera']) && empty($data['cantidad_huespedes']) 
+            && empty($data['fecha_inicio_disponibilidad']) && empty($data['cantidad_dias']) && empty($data['disponible']) && 
+            empty($data['valor_noche']) && empty($data['tipo_propiedad_id']) && empty($data['imagen']) && empty($data['tipo_imagen'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envia ningun dato para modificar']));
                 return $response->withStatus(400);
             }
