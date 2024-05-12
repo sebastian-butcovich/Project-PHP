@@ -11,7 +11,7 @@
         public static function Crear(Request $request, Response $response){
             $data =$request->getParsedBody();
             //var_dump($data['nombre']);
-            if (!isset($data['nombre'])){
+            if (empty($data['nombre'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'El nombre es un campo requerido']));
                 return $response->withStatus(400);
             }
@@ -40,7 +40,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Tipo de propiedad agregado correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -49,7 +49,7 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (!isset($data['nombre'])){
+            if (empty($data['nombre'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envió ningun dato para modificar']));
                 return $response->withStatus(400);
             }
@@ -88,7 +88,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Tipo de propiedad modificado correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -122,7 +122,7 @@
                 $response->getBody()->write(json_encode(['OK' => 'Tipo de propiedad eliminado correctamente']));
                 return $response->withStatus(200); 
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -142,7 +142,7 @@
                 $response->getBody()->write(json_encode(['OK' => $resultados]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }

@@ -10,9 +10,9 @@
 
         public static function Crear(Request $request, Response $response){
             $data =$request->getParsedBody();
-            if (!isset($data['domicilio']) || !isset($data['localidad_id']) || !isset($data['cantidad_huespedes']) || 
-            !isset($data['fecha_inicio_disponibilidad']) || !isset($data['cantidad_dias']) || !isset($data['disponible']) 
-            || !isset($data['valor_noche']) || !isset($data['tipo_propiedad_id'])){
+            if (!empty($data['domicilio']) || !empty($data['localidad_id']) || !empty($data['cantidad_huespedes']) || 
+            !empty($data['fecha_inicio_disponibilidad']) || !empty($data['cantidad_dias']) || !empty($data['disponible']) 
+            || !empty($data['valor_noche']) || !empty($data['tipo_propiedad_id'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'Faltan campos requeridos para agregar esta propiedad']));
                 return $response->withStatus(400);
             }
@@ -62,7 +62,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Propiedad agregada correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -71,9 +71,10 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (isset($data['domicilio']) && isset($data['localidad_id']) && isset($data['cantidad_habitaciones']) && 
-            isset($data['cantidad_banios']) && isset($data['cochera']) && isset($data['cantidad_huespedes']) 
-            && isset($data['fecha_inicio_disponibilidad']) && isset($data['cantidad_dias']) && isset($data['disponible']) && isset($data['valor_noche']) && isset($data['tipo_propiedad_id']) && isset($data['imagen']) && isset($data['tipo_imagen'])){
+            if (!empty($data['domicilio']) && !empty($data['localidad_id']) && !empty($data['cantidad_habitaciones']) && 
+            !empty($data['cantidad_banios']) && !empty($data['cochera']) && !empty($data['cantidad_huespedes']) 
+            && !empty($data['fecha_inicio_disponibilidad']) && !empty($data['cantidad_dias']) && !empty($data['disponible']) && 
+            !empty($data['valor_noche']) && !empty($data['tipo_propiedad_id']) && !empty($data['imagen']) && !empty($data['tipo_imagen'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envia ningun dato para modificar']));
                 return $response->withStatus(400);
             }
@@ -85,7 +86,6 @@
                 try {
                     $con = new Conexion();
                     $c = $con->establecerConexion();
-
                     $src = "SELECT * FROM propiedades WHERE id = :id";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':id', $args['id']);
@@ -96,7 +96,7 @@
                         return $response->withStatus(404);
                     }
 
-                    if (isset($data['tipo_propiedad_id'])){
+                    if (!empty($data['tipo_propiedad_id'])){
                         $src = "SELECT * FROM tipo_propiedades WHERE id = :tipo_propiedad_id";
                         $consulta = $c->prepare($src);
                         $consulta->bindParam(':tipo_propiedad_id', $data['tipo_propiedad_id']);
@@ -107,7 +107,7 @@
                         }
                     }
 
-                    if (isset($data['localidad_id'])){
+                    if (!empty($data['localidad_id'])){
                         $src = "SELECT * FROM localidades WHERE id = :localidad_id";
                         $consulta = $c->prepare($src);
                         $consulta->bindParam(':localidad_id', $data['localidad_id']);
@@ -123,7 +123,7 @@
                     $src = 'UPDATE propiedades SET';
                     $primero = true;
                     foreach ($arregloNombresDatos as $valor){
-                        if (isset($data[$valor])){
+                        if (!empty($data[$valor])){
                             if ($primero){
                                 $src = $src . " " . $valor . " = :" . $valor;
                                 $primero = false;
@@ -137,7 +137,7 @@
 
                     $consulta = $c->prepare($src);
                     foreach ($arregloNombresDatos as $valor){
-                        if (isset($data[$valor])) $consulta->bindValue(":" . $valor, $data[$valor]);
+                        if (!empty($data[$valor])) $consulta->bindValue(":" . $valor, $data[$valor]);
                     }
                     $consulta->execute();
                     $response->getBody()->write(json_encode(['OK' => 'Propiedad editada correctamente']));
@@ -177,7 +177,7 @@
                 $response->getBody()->write(json_encode(['OK' => 'Propiedad eliminada correctamente']));
                 return $response->withStatus(200); 
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -189,14 +189,14 @@
                 $c = $con->establecerConexion();
                 $data = $request->getParsedBody();
                 $src = "SELECT * FROM propiedades";
-                if (isset($data['disponible']) || isset($data['localidad_id'])
-                 || isset($data['fecha_inicio_disponibilidad']) || isset($data['cantidad_huespedes']))
+                if (!empty($data['disponible']) || !empty($data['localidad_id'])
+                 || !empty($data['fecha_inicio_disponibilidad']) || !empty($data['cantidad_huespedes']))
                 {
                     $arreglo = array('disponible', 'localidad_id', 'fecha_inicio_disponibilidad', 'cantidad_huespedes');
                     $src = $src . " WHERE ";
                     $primero = true;
                     foreach ($arreglo as $valor){
-                        if (isset($data[$valor])){
+                        if (!empty($data[$valor])){
                             if ($primero){
                                 $src = $src . "" . $valor . " = " . "'$data[$valor]'";
                                 $primero = false;
@@ -214,7 +214,7 @@
                 $response->getBody()->write(json_encode(['OK' => $resultados]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -230,7 +230,7 @@
                 $response->getBody()->write(json_encode(['OK' => $consulta->fetch(PDO::FETCH_ASSOC)]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }

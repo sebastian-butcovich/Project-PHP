@@ -10,8 +10,8 @@
         public static function Crear(Request $request, Response $response){
             $data =$request->getParsedBody();
             //var_dump($data['nombre']);
-            if (!isset($data['apellido']) || !isset($data['nombre']) || !isset($data['documento']) || 
-            !isset($data['email']) || !isset($data['activo'])){
+            if (!empty($data['apellido']) || !empty($data['nombre']) || !empty($data['documento']) || 
+            !empty($data['email']) || !empty($data['activo'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'Faltan campos requeridos para agregar a este inquilino']));
                 return $response->withStatus(400);
             }
@@ -55,8 +55,8 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (!isset($data['apellido']) && !isset($data['nombre']) && !isset($data['documento']) && 
-            !isset($data['email']) && !isset($data['activo'])){
+            if (!empty($data['apellido']) && !empty($data['nombre']) && !empty($data['documento']) && 
+            !empty($data['email']) && !empty($data['activo'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envia ningun dato para modificar']));
                 return $response->withStatus(400);
             }

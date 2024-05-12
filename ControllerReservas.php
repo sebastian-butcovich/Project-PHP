@@ -11,7 +11,8 @@
         public static function Crear(Request $request, Response $response){
             $data =$request->getParsedBody();
             //var_dump($data['nombre']);
-            if (!isset($data['propiedad_id']) || !isset($data['inquilino_id']) || !isset($data['fecha_desde']) || !isset($data['cantidad_noches'])){
+            if (empty($data['propiedad_id']) || empty($data['inquilino_id']) || empty($data['fecha_desde'])
+             || empty($data['cantidad_noches'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'Faltan campos requeridos para hacer esta reserva']));
                 return $response->withStatus(400);
             }
@@ -59,7 +60,7 @@
                     $response->getBody()->write(json_encode(['OK' => 'Reserva realizada correctamente']));
                     return $response->withStatus(200); 
                 }
-                catch (Exeption $e){
+                catch (Exception $e){
                     $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                     return $response->withStatus(500);
                 }
@@ -68,7 +69,8 @@
 
         public static function Editar(Request $request, Response $response, $args){
             $data =$request->getParsedBody();
-            if (!isset($data['propiedad_id']) && !isset($data['inquilino_id']) && !isset($data['fecha_desde']) && !isset($data['cantidad_noches'])){
+            if (empty($data['propiedad_id']) && empty($data['inquilino_id']) && empty($data['fecha_desde']) &&
+            empty($data['cantidad_noches'])){
                 $response->getBody()->write(json_encode(['Bad Request'=>'No se envia ningun dato para modificar']));
                 return $response->withStatus(400);
             }
@@ -76,7 +78,6 @@
                 try {
                     $con = new Conexion();
                     $c = $con->establecerConexion();
-
                     $src = "SELECT * FROM reservas WHERE id = :id";
                     $consulta = $c->prepare($src);
                     $consulta->bindParam(':id', $args['id']);
@@ -87,7 +88,7 @@
                     }
                     $datosReserva = $consulta->fetch(PDO::FETCH_ASSOC);
                     
-                    if (isset($data['propiedad_id'])){
+                    if (!empty($data['propiedad_id'])){
                         $src = "SELECT * FROM propiedades WHERE id = :propiedad_id";
                         $consulta = $c->prepare($src);
                         $consulta->bindParam(':propiedad_id', $data['propiedad_id']);
@@ -104,7 +105,7 @@
                         $valor_total = $dato_propiedad['valor_noche'] * $data['cantidad_noches'];
                     }
 
-                    if (isset($data['inquilino_id'])){
+                    if (!empty($data['inquilino_id'])){
                         $src = "SELECT * FROM inquilinos WHERE id = :inquilino_id";
                         $consulta = $c->prepare($src);
                         $consulta->bindParam(':inquilino_id', $data['inquilino_id']);
@@ -128,11 +129,11 @@
                     
                     $src = 'UPDATE reservas SET propiedad_id = :propiedad_id, inquilino_id = :inquilino_id, fecha_desde = :fecha_desde, cantidad_noches = :cantidad_noches, valor_total = :valor_total WHERE id = :id';
                     $consulta = $c->prepare($src);
-                    $consulta->bindValue(':propiedad_id', (isset($data['propiedad_id'])) ? $data['propiedad_id'] : $datosReserva['propiedad_id']);
-                    $consulta->bindValue(':inquilino_id', (isset($data['inquilino_id'])) ? $data['inquilino_id'] : $datosReserva['inquilino_id']);
-                    $consulta->bindValue(':fecha_desde', (isset($data['fecha_desde'])) ? $data['fecha_desde'] : $datosReserva['fecha_desde']);
-                    $consulta->bindValue(':cantidad_noches', (isset($data['cantidad_noches'])) ? $data['cantidad_noches'] : $datosReserva['cantidad_noches']);
-                    $consulta->bindValue(':valor_total', (isset($data['propiedad_id'])) ? $valor_total : $datosReserva['propiedad_id']);
+                    $consulta->bindValue(':propiedad_id', (!empty($data['propiedad_id'])) ? $data['propiedad_id'] : $datosReserva['propiedad_id']);
+                    $consulta->bindValue(':inquilino_id', (!empty($data['inquilino_id'])) ? $data['inquilino_id'] : $datosReserva['inquilino_id']);
+                    $consulta->bindValue(':fecha_desde', (!empty($data['fecha_desde'])) ? $data['fecha_desde'] : $datosReserva['fecha_desde']);
+                    $consulta->bindValue(':cantidad_noches', (!empty($data['cantidad_noches'])) ? $data['cantidad_noches'] : $datosReserva['cantidad_noches']);
+                    $consulta->bindValue(':valor_total', (!empty($data['propiedad_id'])) ? $valor_total : $datosReserva['propiedad_id']);
                     $consulta->bindValue(':id', $args['id']);
                     $consulta->execute();
                     $response->getBody()->write(json_encode(['OK' => 'Reserva editada correctamente']));
@@ -171,7 +172,7 @@
                 $response->getBody()->write(json_encode(['OK' => 'Reserva cancelada correctamente']));
                 return $response->withStatus(200); 
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
@@ -191,7 +192,7 @@
                 $response->getBody()->write(json_encode(['OK' => $resultados]));
                 return $response->withStatus(200);
             }
-            catch (Exeption $e){
+            catch (Exception $e){
                 $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
                 return $response->withStatus(500);
             }
