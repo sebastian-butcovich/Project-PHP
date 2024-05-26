@@ -3,7 +3,7 @@
     use Psr\Http\Message\ServerRequestInterface as Request;
     use Slim\Factory\AppFactory;
     
-    require_once __DIR__ . '/../vendor/autoload.php';
+    require __DIR__ . '/vendor/autoload.php';
     require_once './ControllerLocalidades.php';
     require_once './ControllerTipoPropiedades.php';
     require_once './ControllerInquilinos.php';
@@ -27,7 +27,11 @@
         ;
     });
 
-
+    $app->get('/',function($req, $resp, $arg)
+    {
+        $resp->getBody()->write("Pagina principal");
+        return $resp;
+    });
     $app->post('/localidades', \ControllerLocalidades::class . ':Crear');
     $app->put('/localidades/{id}', \ControllerLocalidades::class . ':Editar');
     $app->delete('/localidades/{id}', \ControllerLocalidades::class . ':Eliminar');

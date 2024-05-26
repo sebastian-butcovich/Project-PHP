@@ -4,9 +4,9 @@
 
         public function establecerConexion(){
             $dataname="seminariophp";
-            $dsn = "mysql:host=localhost;dbname=$dataname";
+            $dsn = "mysql:host=localhost;port=3336;dbname=$dataname";
             $username="root";
-            $password="";
+            $password="my_password";
             try {
                 $conexion = new PDO($dsn,$username,$password);
             }
