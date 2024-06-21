@@ -1,0 +1,47 @@
+[
+    {
+        "disponible":1,
+        "localidad_id":1,
+        "tipo_propiedad_id":1,
+        "domicilio":"44 entre 8/9",
+        "cantidad_habitaciones":1,
+        "catidad_banios":1,
+        "cochera":0,
+        "cantidad_huespedes":1,
+        "fecha_inicio_disponibilidad":"2024-04-18",
+        "cantidad_dias":1,
+        "valor_noche":10999,
+        "imagen":"imagen_nueva",
+        "tipo_imagen":"png"
+    },
+    {
+        "disponible":1,
+        "localidad_id":2,
+        "tipo_propiedad_id":2,
+        "domicilio":"44 entre 8/9",
+        "cantidad_habitaciones":2,
+        "catidad_banios":2,
+        "cochera":1,
+        "cantidad_huespedes":2,
+        "fecha_inicio_disponibilidad":"2024-04-18",
+        "cantidad_dias":2,
+        "valor_noche":45999,
+        "imagen":"imagen_nueva",
+        "tipo_imagen":"png"
+    },
+    {
+        "disponible":1,
+        "localidad_id":3,
+        "tipo_propiedad_id":3,
+        "domicilio":"44 entre 8/9",
+        "cantidad_habitaciones":3,
+        "catidad_banios":3,
+        "cochera":1,
+        "cantidad_huespedes":3,
+        "fecha_inicio_disponibilidad":"2024-04-18",
+        "cantidad_dias":3,
+        "valor_noche":54999,
+        "imagen":"imagen_nueva",
+        "tipo_imagen":"png"
+    }
+]
