@@ -43,7 +43,7 @@ function PropiedadPage() {
 
   return (
     <>
-      <HeaderComponent />
+      <HeaderComponent paginaActual={"Lista de propiedades"} />
       <NavBarComponent />
       <label>Propiedades disponibles</label>
       <input

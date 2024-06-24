@@ -60,6 +60,7 @@ function NewPropiedad() {
       [name]: value,
     });
   };
+
   async function mensajeEnvio(event) {
     event.preventDefault();
     let estado = await agregarPropiedad(datos, datosBool, datosSelect);
@@ -221,9 +222,25 @@ function NewPropiedad() {
           Cargue una imagen de la propiedad:{" "}
           <input
             type="file"
+            multiple
             name="imagen"
             value={datos.imagen}
-            onChange={handelInputChange}
+            onChange={(evento) => {
+              Array.from(evento.target.files).forEach((archivo) => {
+                var reader = new FileReader();
+                reader.readAsDataURL(archivo);
+                reader.onload = function () {
+                  var arrayAuxiliar = [];
+                  var base64 = reader.result;
+                  arrayAuxiliar = base64.split(",");
+                  base64 = arrayAuxiliar[1];
+                  setDatos({
+                    ...datos,
+                    imagen: base64,
+                  });
+                };
+              });
+            }}
           />
         </label>
         <button type="submit">Enviar</button>

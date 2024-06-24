@@ -18,7 +18,7 @@ export async function agregarPropiedad(datosInput,datosCheckbox,datosSelect){
                 fecha_inicio_disponibilidad:datosInput.fecha_disponibilidad,
                 cantidad_dias:datosInput.cantidad_dias,
                 valor_noche:datosInput.valor_noche,
-                imagen:"datosInput.imagen",
+                imagen:datosInput.imagen,
                 tipo_imagen:"png"            
             }
         })
@@ -96,7 +96,7 @@ export async function editarPropiedad(datosInputText,datosInputCheckBox,datosInp
                 "fecha_inicio_disponibilidad":datosInputText.fecha_disponibilidad,
                 "cantidad_dias":datosInputText.cantidad_dias,
                 "valor_noche":datosInputText.valor_noche,
-                "imagen":"imagen_nueva",
+                "imagen":datosInputText.imagen,
                 "tipo_imagen":"jpg"
         }
     })

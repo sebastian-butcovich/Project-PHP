@@ -257,7 +257,22 @@ function EditPropiedad() {
         </label>
         <label>
           Cargue una imagen de la propiedad:{" "}
-          <input type="file" name="imagen" onChange={handelInputChange} />
+          <input type="file" name="imagen" onChange={(evento)=>{
+            Array.from(evento.target.files).forEach((archivo) => {
+              var reader = new FileReader();
+              reader.readAsDataURL(archivo);
+              reader.onload = function () {
+                var arrayAuxiliar = [];
+                var base64 = reader.result;
+                arrayAuxiliar = base64.split(",");
+                base64 = arrayAuxiliar[1];
+                setDatos({
+                  ...datos,
+                  imagen: base64,
+                });
+              };
+            });
+          }}/>
         </label>
         <button type="submit">Enviar</button>
       </form>
