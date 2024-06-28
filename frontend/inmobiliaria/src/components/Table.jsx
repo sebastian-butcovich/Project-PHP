@@ -17,6 +17,9 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+  useEffect(()=>{
+    console.log(data.length);
+  },[]);
   return (
     <div>
       <table>

@@ -33,7 +33,7 @@ function EditTipoPropiedad() {
           if(status == 200)
             {
                 Swal.fire({
-                    title:"Propiedad Ingresada correctamente",
+                    title:"Propiedad editada correctamente",
                 }).then(response => {
                     if(response.isConfirmed)
                         {

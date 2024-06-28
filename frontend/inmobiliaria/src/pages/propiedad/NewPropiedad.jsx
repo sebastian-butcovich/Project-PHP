@@ -1,13 +1,14 @@
 import { React, useState, useEffect } from "react";
 import Swall from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import "../propiedad/css_propiedades/newP.css";
+import "./css_propiedades/New_Propiedad.css";
 import { agregarPropiedad } from "../../utils/peticionesPropiedades";
 import { pedirTipoPropiedades } from "../../utils/peticionesTipoPropiedad";
 import { pedirLocalidad } from "../../utils/peticionesLocalidad";
 import HeaderComponent from "../../components/HeaderComponent";
 import NavBarComponent from "../../components/NavBarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import "./../CSS_Generales/Formulario.css"
 
 function NewPropiedad() {
   const navigate = useNavigate();
@@ -92,13 +93,13 @@ function NewPropiedad() {
   }, []);
   return (
     <div className="NewPropiedadPage">
-      <HeaderComponent />
+      <HeaderComponent paginaActual={"Agregar una nueva propiedad"} />
       <NavBarComponent />
-      <h2>Crear una nueva propiedad</h2>
       <form onSubmit={mensajeEnvio} className="newPropiedadPage_formulario">
         <label>
-          Domicilio:{" "}
-          <input
+          <span>Domicilio:</span>
+        </label>
+        <input
             required
             type="text"
             min="1"
@@ -107,11 +108,11 @@ function NewPropiedad() {
             value={datos.domicilio}
             onChange={handelInputChange}
           />
-        </label>
         <label>
           {" "}
           Localidad:
-          <select name="localidad" onChange={handleSelect} required>
+        </label>
+        <select name="localidad" onChange={handleSelect} required>
             <option value="">Selecciona una campo</option>
             {listaLocalidad.length === 0 ? (
               <option>Nada para mostrar</option>
@@ -123,7 +124,6 @@ function NewPropiedad() {
               ))
             )}
           </select>
-        </label>
         <label>
           Cantidad de habitaciones:{" "}
           <input
@@ -220,7 +220,8 @@ function NewPropiedad() {
         </label>
         <label>
           Cargue una imagen de la propiedad:{" "}
-          <input
+        </label>
+        <input
             type="file"
             multiple
             name="imagen"
@@ -242,16 +243,17 @@ function NewPropiedad() {
               });
             }}
           />
-        </label>
-        <button type="submit">Enviar</button>
-      </form>
-      <button
+        <div className="container-btn">
+        <button  type="submit">Enviar</button>
+        <button
         onClick={() => {
           navigate("/");
         }}
       >
         Vovler
       </button>
+        </div>
+      </form>
       <FooterComponent />
     </div>
   );

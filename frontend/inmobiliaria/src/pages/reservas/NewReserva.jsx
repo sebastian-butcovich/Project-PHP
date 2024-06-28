@@ -7,6 +7,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { agregarReserva } from "../../utils/peticionesReservas";
 import FooterComponent from "../../components/FooterComponent";
+import './../CSS_Generales/Formulario.css'
+
+
 function NewReserva() {
   const navigate = useNavigate();
   const [reservas, setReservas] = useState({
