@@ -90,15 +90,18 @@ function NewReserva() {
     <div>
       <HeaderComponent />
       <NavBarComponent />
+      <div className="formulario">
       <form
         onSubmit={(event) => {
           event.preventDefault();
           enviarInformacion();
         }}
+        className="form"
       >
-        <label>
+        <label className="label-form">
           Domicilio:{" "}
-          <select name="propiedad_id" required onChange={handleReservaSelect}>
+        </label>
+        <select className="input-form" name="propiedad_id" required onChange={handleReservaSelect}>
             <option>Seleccione un propiedad</option>
             {propiedades.length != 0 ? (
               propiedades.map((element) => (
@@ -110,10 +113,10 @@ function NewReserva() {
               <option>Seleccione un propiedad</option>
             )}
           </select>
-        </label>
-        <label>
+        <label className="label-form">
           Inquilino:{" "}
-          <select name="inquilino_id" required onChange={handleReservaSelect}>
+        </label>
+        <select className="input-form" name="inquilino_id" required onChange={handleReservaSelect}>
             <option>Seleccione un inquilino</option>
             {inquilinos.map((element) => (
               <option key={element.id} accessKey={element.id}>
@@ -121,34 +124,39 @@ function NewReserva() {
               </option>
             ))}
           </select>
-        </label>
-        <label>
+        <label className="label-form">
           Fecha desde:{" "}
-          <input
+        </label>
+        <input
             required
             type="date"
             name="fecha_desde"
             onChange={hadleReserva}
+            className="input-form"
           />
-        </label>
-        <label>
+        <label className="label-form">
           Cantidad de noches:{" "}
-          <input
+        </label>
+        <input
             required
             type="number"
             name="cantidad_noches"
             onChange={hadleReserva}
+            className="input-form"
           />
-        </label>
-        <input type="submit" content="Enviar" />
-      </form>
-      <button
+        <div className="container-btn">
+        <button className="btn-end-form" type="submit">Enviar</button>
+        <button
         onClick={() => {
           navigate("/reservas");
         }}
+        className="btn-end-form"
       >
         Volver
       </button>
+        </div>
+      </form>
+      </div>
       <FooterComponent />
     </div>
   );

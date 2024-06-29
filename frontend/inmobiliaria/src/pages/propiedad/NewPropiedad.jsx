@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import Swall from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import "./../../css/css_pages/formulario.css";
 import { agregarPropiedad } from "../../utils/peticionesPropiedades";
 import { pedirTipoPropiedades } from "../../utils/peticionesTipoPropiedad";
 import { pedirLocalidad } from "../../utils/peticionesLocalidad";

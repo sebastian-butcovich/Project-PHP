@@ -22,7 +22,7 @@ function TipoPropiedadPage() {
     obtenerTabla();
   }, []);
   return (
-    <div>
+    <div className="pages">
       <HeaderComponent paginaActual={"Tipo propiedad"}/>
       <NavBarComponent />
       <button

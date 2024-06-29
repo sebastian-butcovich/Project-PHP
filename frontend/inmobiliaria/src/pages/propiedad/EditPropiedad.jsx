@@ -3,7 +3,6 @@ import Swall from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./../../css/css_pages/formulario.css";
 import {
-  agregarPropiedad,
   editarPropiedad,
 } from "../../utils/peticionesPropiedades";
 import { pedirTipoPropiedades } from "../../utils/peticionesTipoPropiedad";
@@ -12,6 +11,7 @@ import { buscarIdEnArreglo } from "../../utils/armarArreglos";
 import HeaderComponent from "../../components/HeaderComponent";
 import NavBarComponent from "../../components/NavBarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import './../../css/css_pages/formulario.css'
 
 function EditPropiedad() {
   const navigate = useNavigate();

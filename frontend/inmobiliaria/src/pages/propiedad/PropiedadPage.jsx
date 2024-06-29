@@ -10,6 +10,7 @@ import { pedirLocalidad } from "../../utils/peticionesLocalidad";
 import NavBarComponent from "../../components/NavBarComponent";
 import HeaderComponent from "../../components/HeaderComponent";
 import FooterComponent from "../../components/FooterComponent";
+import './../../css/css_pages/footer.css'
 
 function PropiedadPage() {
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ function PropiedadPage() {
         paginaEditar={"/editarPropiedad"}
         obtenerData={obtenerTabla}
       />
-      <FooterComponent />
+      <FooterComponent className="footer" />
     </>
   );
 }
