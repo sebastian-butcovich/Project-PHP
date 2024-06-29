@@ -1,6 +1,6 @@
 import { React, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./css/Table.css";
+import "./../css/css_components/Table.css";
 import {
   useReactTable,
   getCoreRowModel,

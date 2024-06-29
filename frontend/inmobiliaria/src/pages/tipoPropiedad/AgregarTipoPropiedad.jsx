@@ -5,16 +5,15 @@ import Swal from "sweetalert2";
 import HeaderComponent from '../../components/HeaderComponent'
 import NavBarComponent from '../../components/NavBarComponent'
 import FooterComponent from '../../components/FooterComponent'
-
+import './../../css/css_pages/formulario.css'
 
 function AgregarTipoPropiedad() {
   const navigate = useNavigate();
   const [datos, setDatos] = useState("");
   return (
     <div>
-      <HeaderComponent/>
+      <HeaderComponent paginaActual={"Agregar un nuevo tipo de propiedad"}/>
       <NavBarComponent/>
-      <h1>Agregar un nuevo tipo de propiedad</h1>
       <form
         onSubmit={async (e) => {
           e.preventDefault();

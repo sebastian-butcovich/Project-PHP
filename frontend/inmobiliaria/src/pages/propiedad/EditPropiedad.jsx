@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import Swall from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./../CSS_Generales/Formulario.css";
+import "./../../css/css_pages/formulario.css";
 import {
   agregarPropiedad,
   editarPropiedad,

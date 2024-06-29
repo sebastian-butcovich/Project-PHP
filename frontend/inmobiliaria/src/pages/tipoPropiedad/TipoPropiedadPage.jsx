@@ -23,7 +23,7 @@ function TipoPropiedadPage() {
   }, []);
   return (
     <div>
-      <HeaderComponent/>
+      <HeaderComponent paginaActual={"Tipo propiedad"}/>
       <NavBarComponent />
       <button
         onClick={() => {
