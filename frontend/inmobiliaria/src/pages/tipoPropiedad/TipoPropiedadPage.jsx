@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getFormatTableTipoPropiedad } from "../../components/formatTablePropiedades";
+import { getFormatTableTipoPropiedad } from "../../utils/formatTablePropiedades";
 import Table from "../../components/Table";
 import {
   pedirTipoPropiedades,
@@ -23,7 +23,7 @@ function TipoPropiedadPage() {
     obtenerTabla();
   }, []);
   return (
-    <div className="pages">
+    <div className="page">
       <HeaderComponent paginaActual={"Tipo propiedad"}/>
       <NavBarComponent />
       <div className ="container-btn-top-page">

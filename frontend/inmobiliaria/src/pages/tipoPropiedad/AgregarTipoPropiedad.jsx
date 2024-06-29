@@ -11,7 +11,7 @@ function AgregarTipoPropiedad() {
   const navigate = useNavigate();
   const [datos, setDatos] = useState("");
   return (
-    <div>
+    <div className="page">
       <HeaderComponent paginaActual={"Agregar un nuevo tipo de propiedad"} />
       <NavBarComponent />
       <div className="formulario">

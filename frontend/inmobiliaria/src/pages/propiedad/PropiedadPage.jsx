@@ -4,7 +4,7 @@ import {
   obtenerPropiedades,
   peticionEliminarPropiedad,
 } from "../../utils/peticionesPropiedades";
-import { getFormat } from "../../components/formatTablePropiedades";
+import { getFormat } from "../../utils/formatTablePropiedades";
 import { useNavigate } from "react-router-dom";
 import { pedirLocalidad } from "../../utils/peticionesLocalidad";
 import NavBarComponent from "../../components/NavBarComponent";
@@ -12,6 +12,7 @@ import HeaderComponent from "../../components/HeaderComponent";
 import FooterComponent from "../../components/FooterComponent";
 import "./../../css/css_components/Footer.css";
 import "./../../css/css_pages/search-propiedades.css"
+import "./../../css/css_pages/generalPages.css"
 
 function PropiedadPage() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function PropiedadPage() {
   }, []);
 
   return (
-    <>
+    <div className="page">
       <HeaderComponent paginaActual={"Lista de propiedades"} />
       <NavBarComponent />
       <div className="search-propiedades">
@@ -116,7 +117,7 @@ function PropiedadPage() {
         obtenerData={obtenerTabla}
       />
       <FooterComponent className="footer" />
-    </>
+    </div>
   );
 }
 

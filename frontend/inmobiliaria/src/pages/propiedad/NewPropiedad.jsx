@@ -91,7 +91,7 @@ function NewPropiedad() {
     pedirDatosFaltantes();
   }, []);
   return (
-    <div className="pages">
+    <div className="page">
       <HeaderComponent paginaActual={"Agregar una nueva propiedad"} />
       <NavBarComponent />
       <div className="formulario">
@@ -261,7 +261,7 @@ function NewPropiedad() {
           </div>
         </form>
       </div>
-      <FooterComponent />
+      <FooterComponent  />
     </div>
   );
 }

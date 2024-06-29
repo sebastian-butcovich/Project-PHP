@@ -87,7 +87,7 @@ function NewReserva() {
   }
 
   return (
-    <div>
+    <div className="page">
       <HeaderComponent />
       <NavBarComponent />
       <div className="formulario">

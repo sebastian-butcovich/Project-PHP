@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBarComponent from "../../components/NavBarComponent";
 import { obtenerReservas } from "../../utils/peticionesReservas";
-import { getColumnsReservas } from "../../components/formatTablePropiedades";
+import { getColumnsReservas } from "../../utils/formatTablePropiedades";
 import Table from "../../components/Table";
 import { useNavigate } from "react-router-dom";
 import { eliminarReserva } from "../../utils/peticionesReservas";
@@ -20,7 +20,7 @@ function Reservas() {
     obtenerTabla();
   }, []);
   return (
-    <div>
+    <div className="page">
       <HeaderComponent paginaActual={"Reservas"} />
       <NavBarComponent />
       <div className="container-btn-top-page">
