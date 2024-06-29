@@ -21,15 +21,18 @@ function Reservas() {
   }, []);
   return (
     <div>
-      <HeaderComponent />
+      <HeaderComponent paginaActual={"Reservas"} />
       <NavBarComponent />
+      <div className="container-btn-top-page">
       <button
         onClick={() => {
           navigate("/newReserva");
         }}
+        className="btn-top-page"
       >
         Agregar una reserva
       </button>
+      </div>
       <Table
         data={reservas}
         columns={columns}

@@ -9,7 +9,14 @@ import {
 } from "@tanstack/react-table";
 import Swal from "sweetalert2";
 
-function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtenerData }) {
+function Table({
+  data,
+  columns,
+  condicion,
+  funcionEliminar,
+  paginaEditar,
+  obtenerData,
+}) {
   const navi = useNavigate();
   const table = useReactTable({
     data,
@@ -17,9 +24,9 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
-  useEffect(()=>{
+  useEffect(() => {
     console.log(data.length);
-  },[]);
+  }, []);
   return (
     <div>
       <table>
@@ -34,7 +41,7 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
                   )}
                 </th>
               ))}
-              <th>acciones</th>
+              <th>Acciones</th>
             </tr>
           ))}
         </thead>
@@ -47,18 +54,24 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
                 </td>
               ))}
               <td>
-                {condicion? <button
-                  onClick={() => {
-                    navi("/detailPropiedades", {
-                      state: {
-                        data: row.original,
-                      },
-                    });
-                  }}
-                >
-                  Ver detalle
-                </button>:<></>}
+                {condicion ? (
+                  <button
+                    className="btn-row-table"
+                    onClick={() => {
+                      navi("/detailPropiedades", {
+                        state: {
+                          data: row.original,
+                        },
+                      });
+                    }}
+                  >
+                    Ver detalle
+                  </button>
+                ) : (
+                  <></>
+                )}
                 <button
+                  className="btn-row-table"
                   onClick={() => {
                     navi(`${paginaEditar}`, {
                       state: {
@@ -70,6 +83,7 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
                   Editar
                 </button>
                 <button
+                  className="btn-row-table"
                   onClick={() => {
                     Swal.fire({
                       title: "Eliminar entrada",
@@ -81,15 +95,13 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
                       confirmButtonText: "Si eliminar",
                     }).then(async (result) => {
                       if (result.isConfirmed) {
-                        let response = await funcionEliminar(
-                          row.original.id
-                        );
-                        if ((response == 200)) {
+                        let response = await funcionEliminar(row.original.id);
+                        if (response == 200) {
                           Swal.fire({
                             title: "Entrada eliminada",
-                          }).then(confirm => {
-                            if(confirm.isConfirmed){
-                              obtenerData()
+                          }).then((confirm) => {
+                            if (confirm.isConfirmed) {
+                              obtenerData();
                             }
                           });
                         } else {
@@ -97,8 +109,9 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
                             Swal.fire({
                               title: "Ocurrio un error",
                               icon: "error",
-                              text: "No existe una propiedad con ese ID, el registro que quiere eliminar " + 
-                              "ya no esta cargado en los datos actualize la pestaña del navegador",
+                              text:
+                                "No existe una propiedad con ese ID, el registro que quiere eliminar " +
+                                "ya no esta cargado en los datos actualize la pestaña del navegador",
                             });
                           } else {
                             Swal.fire({
@@ -119,12 +132,29 @@ function Table({ data, columns, condicion, funcionEliminar, paginaEditar, obtene
           ))}
         </tbody>
       </table>
-      <button onClick={() => table.setPageIndex(0)}>Primera pagina</button>
-      <button onClick={() => table.previousPage()}>Pagina anterior</button>
-      <button onClick={() => table.nextPage()}>Pagina siguiente</button>
-      <button onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
-        Ultima pagina
-      </button>
+      <div className="container-btn-navigate-table">
+        <button
+          className="btn-navigate-table"
+          onClick={() => table.setPageIndex(0)}
+        >
+          Primera pagina
+        </button>
+        <button
+          className="btn-navigate-table"
+          onClick={() => table.previousPage()}
+        >
+          Pagina anterior
+        </button>
+        <button className="btn-navigate-table" onClick={() => table.nextPage()}>
+          Pagina siguiente
+        </button>
+        <button
+          className="btn-navigate-table"
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+        >
+          Ultima pagina
+        </button>
+      </div>
     </div>
   );
 }

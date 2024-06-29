@@ -11,12 +11,12 @@
 }
 .Titulo-principal {
   text-transform: uppercase;
-  margin-bottom: 20px;
-  font-size: 60px;
+  margin-bottom: 10px;
+  font-size: 50px;
   font-family: "Fira Sans Condensed";
   color:black;
 }
 .Titulo-secundario {
-  margin: 20px;
-  font-size: 40px;
+  margin: 10px;
+  font-size: 30px;
 }

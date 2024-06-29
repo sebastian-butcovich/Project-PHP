@@ -1,9 +1,0 @@
-.NavBar{
-    display: flex;
-    height:5vh;
-    justify-content: center;
-    border:10px;
-}
-.NavBar-Link{
-    margin: 0 10px;
-}

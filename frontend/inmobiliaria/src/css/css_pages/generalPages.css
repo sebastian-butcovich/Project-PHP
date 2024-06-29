@@ -1,0 +1,15 @@
+.container-btn-top-page{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right:20px;
+}
+.btn-top-page{
+    margin:10px;
+    height:4vh;
+    border-radius: 10px;
+    border:2px solid white;
+    background-color:#a7eb63;
+    color:#333;
+    width:15%;
+}
