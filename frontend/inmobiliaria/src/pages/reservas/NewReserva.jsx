@@ -88,7 +88,7 @@ function NewReserva() {
 
   return (
     <div className="page">
-      <HeaderComponent />
+      <HeaderComponent paginaActual={"Agregar nueva reserva"}/>
       <NavBarComponent />
       <div className="formulario">
       <form

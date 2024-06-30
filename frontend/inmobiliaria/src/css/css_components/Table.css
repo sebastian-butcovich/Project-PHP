@@ -9,13 +9,18 @@ thead{
     background: #333;
     color:white;
 }
+
+
 th, td{
-    text-align:left;
+    text-align:center;
     padding: 16px;
 }
 tr:nth-child(even){
     background:#333;
     color:white;
+}
+.column-buttons{
+    width:30%;
 }
 .btn-row-table{
     margin:3px;

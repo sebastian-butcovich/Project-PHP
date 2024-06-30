@@ -24,9 +24,6 @@ function Table({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
-  useEffect(() => {
-    console.log(data.length);
-  }, []);
   return (
     <div>
       <table>
@@ -53,7 +50,7 @@ function Table({
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
-              <td>
+              <td className="column-buttons">
                 {condicion ? (
                   <button
                     className="btn-row-table"

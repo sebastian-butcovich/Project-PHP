@@ -77,7 +77,6 @@ export async function buscarPropiedadDisponible(){
     return propiedades_disponibles.data.OK;
 }
 export async function editarPropiedad(datosInputText,datosInputCheckBox,datosInputSelect){
-    console.log(datosInputText);
     const response = await axios({
         method:"put",
         url:"http://localhost:80/propiedades/editar",
@@ -90,7 +89,7 @@ export async function editarPropiedad(datosInputText,datosInputCheckBox,datosInp
                 "tipo_propiedad_id":datosInputSelect.tipo_propiedad,
                 "domicilio":datosInputText.domicilio,
                 "cantidad_habitaciones":datosInputText.cantidad_habitaciones,
-                "cantidad_banios":datosInputText.catidad_banios,
+                "cantidad_banios":datosInputText.cantidad_banios,
                 "cochera":datosInputCheckBox.cochera,
                 "cantidad_huespedes":datosInputText.cantidad_huespedes,
                 "fecha_inicio_disponibilidad":datosInputText.fecha_disponibilidad,

@@ -3,65 +3,76 @@ import { useLocation, useNavigate } from "react-router-dom";
 import HeaderComponent from "../../components/HeaderComponent";
 import NavBarComponent from "../../components/NavBarComponent";
 import FooterComponent from "../../components/FooterComponent";
+import "../../css/css_pages/formulario.css";
+import "../../css/css_pages/detail-propiedades.css"
+
 
 function DetailPropiedad() {
   const location = useLocation();
   const navigate = useNavigate();
   let data = location.state.data;
   return (
-    <div>
-      <HeaderComponent />
+    <div className="page">
+      <HeaderComponent paginaActual={"Detalles de la propiedad seleccionada"} />
       <NavBarComponent />
-      <h2>Detalles de la propiedad seleccionada</h2>
-      <ul>
-        <li>
-          <p>Dirección: {data.domicilio}</p>
-        </li>
-        <li>
-          <p>Localidad: {data.localidad_id}</p>
-        </li>
-        <li>
-          <p>Tipo de propiedad: {data.tipo_propiedad_id}</p>
-        </li>
-        <li>
-          <p>Fecha de disponibilidad: {data.fecha_inicio_disponibilidad}</p>
-        </li>
-        <li>
-          <p>Valor de una noche: {data.valor_noche}</p>
-        </li>
-        <li>
-          {data.disponible == 1 ? (
-            <p>Esta disponible</p>
-          ) : (
-            <p>No esta disponible</p>
-          )}
-        </li>
-        <li>
-          <p>Cantidad de habitaciones: {data.cantidad_habitaciones}</p>
-        </li>
-        <li>
-          <p>Cantidad de baños: {data.cantidad_banios}</p>
-        </li>
-        <li>
-          {data.cochera == 1 ? <p>Tiene cochera</p> : <p>No tiene cochera</p>}
-        </li>
-        <li>
-          <p>Cantidad de huespedes: {data.cantidad_huespedes}</p>
-        </li>
-        <li>
-          <p>Cantidad de dias que esta disponible: {data.cantidad_dias}</p>
-        </li>
-        <li>{data.imagen}</li>
-        <li>{data.tipo_imagen}</li>
-      </ul>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Volver
-      </button>
-      <FooterComponent/>
+      <div className=" formulario">
+        <div className="form">
+          <ul>
+            <li>
+              <p className="info-detail-propiedades">Dirección: {data.domicilio}</p>
+            </li>
+            <li>
+              <p className="info-detail-propiedades" >Localidad: {data.localidad_id}</p>
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Tipo de propiedad: {data.tipo_propiedad_id}</p>
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Fecha de disponibilidad: {data.fecha_inicio_disponibilidad}</p>
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Valor de una noche: {data.valor_noche}</p>
+            </li>
+            <li>
+              {data.disponible == 1 ? (
+                <p className="info-detail-propiedades">Esta disponible</p>
+              ) : (
+                <p className="info-detail-propiedades">No esta disponible</p>
+              )}
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Cantidad de habitaciones: {data.cantidad_habitaciones}</p>
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Cantidad de baños: {data.cantidad_banios}</p>
+            </li>
+            <li>
+              {data.cochera == 1 ? (
+                <p className="info-detail-propiedades">Tiene cochera</p>
+              ) : (
+                <p className="info-detail-propiedades">No tiene cochera</p>
+              )}
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Cantidad de huespedes: {data.cantidad_huespedes}</p>
+            </li>
+            <li>
+              <p className="info-detail-propiedades">Cantidad de dias que esta disponible: {data.cantidad_dias}</p>
+            </li>
+            <li>{data.imagen}</li>
+            <li ><p className="info-detail-propiedades">{data.tipo_imagen}</p></li>
+          </ul>
+          <button
+            onClick={() => {
+              navigate("/");
+            }}
+            className="btn-end-form"
+          >
+            Volver
+          </button>
+        </div>
+      </div>
+      <FooterComponent />
     </div>
   );
 }

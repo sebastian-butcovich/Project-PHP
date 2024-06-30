@@ -66,7 +66,7 @@ function PropiedadPage() {
           }}
           className="search-propiedades-input"
         >
-          <option value="">Selecciona un pais</option>
+          <option value="">Selecciona una localidad</option>
           {localidades.length == 0 ? (
             <option>Nada para mostrar</option>
           ) : (

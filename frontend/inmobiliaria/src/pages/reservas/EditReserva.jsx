@@ -112,17 +112,18 @@ function EditReserva() {
   }
 
   return (
-    <div>
-      <HeaderComponent />
+    <div className="page">
+      <HeaderComponent paginaActual={"Editar reserva"}/>
       <NavBarComponent />
-      <form onSubmit={enviarInformacion}>
-        <label>
-          Domicilio:{" "}
+      <div className="formulario">
+        <form className="form" onSubmit={enviarInformacion}>
+          <label className="label-form">Domicilio: </label>
           <select
             name="propiedad_id"
             required
             onChange={handleReservaSelect}
             value={reservaSelectNombre.propiedad_id}
+            className="input-form"
           >
             <option>Seleccione un propiedad</option>
             {propiedades.length != 0 ? (
@@ -135,14 +136,13 @@ function EditReserva() {
               <option>Seleccione un propiedad</option>
             )}
           </select>
-        </label>
-        <label>
-          Inquilino:{" "}
+          <label className="label-form">Inquilino: </label>
           <select
             name="inquilino_id"
             required
             onChange={handleReservaSelect}
             value={reservaSelectNombre.inquilino_id}
+            className="input-form"
           >
             <option>Seleccione un inquilino</option>
             {inquilinos.map((element) => (
@@ -151,36 +151,39 @@ function EditReserva() {
               </option>
             ))}
           </select>
-        </label>
-        <label>
-          Fecha desde:{" "}
+          <label className="label-form">Fecha desde: </label>
           <input
             required
             type="date"
             name="fecha_desde"
             onChange={hadleReserva}
             value={reservas.fecha_desde}
+            className="input-form"
           />
-        </label>
-        <label>
-          Cantidad de noches:{" "}
+          <label className="label-form">Cantidad de noches: </label>
           <input
             required
             type="number"
             name="cantidad_noches"
             onChange={hadleReserva}
             value={reservas.cantidad_noches}
+            className="input-form"
           />
-        </label>
-        <input type="submit" content="Enviar" />
-      </form>
-      <button
-        onClick={() => {
-          navigate("/reservas");
-        }}
-      >
-        Volver
-      </button>
+          <div className="container-btn">
+            <button className="btn-end-form" type="submit">
+              Enviar
+            </button>
+            <button
+              onClick={() => {
+                navigate("/reservas");
+              }}
+              className="btn-end-form"
+            >
+              Volver
+            </button>
+          </div>
+        </form>
+      </div>
       <FooterComponent />
     </div>
   );

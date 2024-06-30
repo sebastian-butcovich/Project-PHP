@@ -2,16 +2,14 @@ import { React, useState, useEffect } from "react";
 import Swall from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./../../css/css_pages/formulario.css";
-import {
-  editarPropiedad,
-} from "../../utils/peticionesPropiedades";
+import { editarPropiedad } from "../../utils/peticionesPropiedades";
 import { pedirTipoPropiedades } from "../../utils/peticionesTipoPropiedad";
 import { pedirLocalidad } from "../../utils/peticionesLocalidad";
 import { buscarIdEnArreglo } from "../../utils/armarArreglos";
 import HeaderComponent from "../../components/HeaderComponent";
 import NavBarComponent from "../../components/NavBarComponent";
 import FooterComponent from "../../components/FooterComponent";
-import './../../css/css_pages/formulario.css'
+import "./../../css/css_pages/formulario.css";
 
 function EditPropiedad() {
   const navigate = useNavigate();
@@ -121,13 +119,12 @@ function EditPropiedad() {
     pedirDatosFaltantes();
   }, []);
   return (
-    <div>
-      <HeaderComponent />
+    <div className="page">
+      <HeaderComponent paginaActual={"Editar propiedad"} />
       <NavBarComponent />
-      <h2>Editar propiedad</h2>
-      <form onSubmit={mensajeEditar} className="newPropiedadPage_formulario">
-        <label>
-          Domicilio:
+      <div className="formulario">
+        <form className="form" onSubmit={mensajeEditar}>
+          <label className="label-form">Domicilio:</label>
           <input
             required
             type="text"
@@ -136,14 +133,14 @@ function EditPropiedad() {
             name="domicilio"
             value={datos.domicilio}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Localidad:
+          <label className="label-form">Localidad:</label>
           <select
             name="localidad"
-            onChangeCapture={handleSelect}
+            onChange={handleSelect}
             value={datosSelectInput.localidad}
+            className="input-form"
           >
             <option value="">Selecciona una campo</option>
             {listaLocalidad.length === 0 ? (
@@ -156,36 +153,23 @@ function EditPropiedad() {
               ))
             )}
           </select>
-        </label>
-        <label>
-          Cantidad de habitaciones:
+          <label className="label-form">Cantidad de habitaciones:</label>
           <input
             type="number"
             name="cantidad_habitaciones"
             value={datos.cantidad_habitaciones}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Cantidad de baños:
+          <label className="label-form">Cantidad de baños:</label>
           <input
             type="number"
             name="cantidad_banios"
             value={datos.cantidad_banios}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Tiene cochera:
-          <input
-            type="checkbox"
-            name="cochera"
-            onChange={handleCheckboxChange}
-            checked={datosCheckInput.cochera}
-          />
-        </label>
-        <label>
-          Cantidad de huespedes:
+          <label className="label-form">Cantidad de huespedes:</label>
           <input
             min="1"
             required
@@ -193,20 +177,18 @@ function EditPropiedad() {
             name="cantidad_huespedes"
             value={datos.cantidad_huespedes}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Fecha de disponibilidad
+          <label className="label-form">Fecha de disponibilidad</label>
           <input
             required
             type="date"
             name="fecha_disponibilidad"
             value={datos.fecha_disponibilidad}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Cantidad de dias:
+          <label className="label-form">Cantidad de dias:</label>
           <input
             min="1"
             required
@@ -214,19 +196,9 @@ function EditPropiedad() {
             name="cantidad_dias"
             value={datos.cantidad_dias}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Disponible:
-          <input
-            type="checkbox"
-            name="disponible"
-            checked={datosCheckInput.disponible}
-            onChange={handleCheckboxChange}
-          />
-        </label>
-        <label>
-          Valor Noche:
+          <label className="label-form">Valor Noche:</label>
           <input
             required
             min="1"
@@ -234,14 +206,14 @@ function EditPropiedad() {
             name="valor_noche"
             value={datos.valor_noche}
             onChange={handelInputChange}
+            className="input-form"
           />
-        </label>
-        <label>
-          Que tipo de propiedad es:
+          <label className="label-form">Que tipo de propiedad es:</label>
           <select
             name="tipo_propiedad"
-            onChangeCapture={handleSelect}
+            onChange={handleSelect}
             value={datosSelectInput.tipo_propiedad}
+            className="input-form"
           >
             <option>Seleccione un tipo de propiedad</option>
             {listaTipoPropiedad.length === 0 ? (
@@ -254,35 +226,62 @@ function EditPropiedad() {
               ))
             )}
           </select>
-        </label>
-        <label>
-          Cargue una imagen de la propiedad:{" "}
-          <input type="file" name="imagen" onChange={(evento)=>{
-            Array.from(evento.target.files).forEach((archivo) => {
-              var reader = new FileReader();
-              reader.readAsDataURL(archivo);
-              reader.onload = function () {
-                var arrayAuxiliar = [];
-                var base64 = reader.result;
-                arrayAuxiliar = base64.split(",");
-                base64 = arrayAuxiliar[1];
-                setDatos({
-                  ...datos,
-                  imagen: base64,
-                });
-              };
-            });
-          }}/>
-        </label>
-        <button type="submit">Enviar</button>
-      </form>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        Volver a la tabla
-      </button>
+          <div className="container-input-end">
+            <label className="label-form">
+              Disponible:
+              <input
+                type="checkbox"
+                name="disponible"
+                checked={datosCheckInput.disponible}
+                onChange={handleCheckboxChange}
+              />
+            </label>
+            <label className="label-form">
+              Tiene cochera:
+              <input
+                type="checkbox"
+                name="cochera"
+                onChange={handleCheckboxChange}
+                checked={datosCheckInput.cochera}
+              />
+            </label>
+            <label className="label-form">
+              imagen de la propiedad:{" "}
+              <input
+                type="file"
+                name="imagen"
+                onChange={(evento) => {
+                  Array.from(evento.target.files).forEach((archivo) => {
+                    var reader = new FileReader();
+                    reader.readAsDataURL(archivo);
+                    reader.onload = function () {
+                      var arrayAuxiliar = [];
+                      var base64 = reader.result;
+                      arrayAuxiliar = base64.split(",");
+                      base64 = arrayAuxiliar[1];
+                      setDatos({
+                        ...datos,
+                        imagen: base64,
+                      });
+                    };
+                  });
+                }}
+              />
+            </label>
+          </div>
+          <div className="container-btn">
+            <button className="btn-end-form" type="submit">Enviar</button>
+            <button
+              onClick={() => {
+                navigate("/");
+              }}
+              className="btn-end-form"
+            >
+              Volver a la tabla
+            </button>
+          </div>
+        </form>
+      </div>
       <FooterComponent />
     </div>
   );
