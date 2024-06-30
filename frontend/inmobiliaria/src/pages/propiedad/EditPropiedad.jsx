@@ -259,9 +259,11 @@ function EditPropiedad() {
                       var base64 = reader.result;
                       arrayAuxiliar = base64.split(",");
                       base64 = arrayAuxiliar[1];
+                      var tipoImagen = arrayAuxiliar[0];
                       setDatos({
                         ...datos,
                         imagen: base64,
+                        tipo_imagen:tipoImagen
                       });
                     };
                   });

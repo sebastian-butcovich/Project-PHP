@@ -1,16 +1,19 @@
-import { React } from "react";
+import { React, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import HeaderComponent from "../../components/HeaderComponent";
 import NavBarComponent from "../../components/NavBarComponent";
 import FooterComponent from "../../components/FooterComponent";
 import "../../css/css_pages/formulario.css";
 import "../../css/css_pages/detail-propiedades.css"
-
+import {deBase64AFile} from './../../utils/base64.js'
 
 function DetailPropiedad() {
   const location = useLocation();
   const navigate = useNavigate();
   let data = location.state.data;
+
+ 
+ 
   return (
     <div className="page">
       <HeaderComponent paginaActual={"Detalles de la propiedad seleccionada"} />
@@ -59,7 +62,7 @@ function DetailPropiedad() {
             <li>
               <p className="info-detail-propiedades">Cantidad de dias que esta disponible: {data.cantidad_dias}</p>
             </li>
-            <li>{data.imagen}</li>
+            <li><img className="img" src={`${data.tipo_imagen},${data.imagen}`} alt="imagen de la propiedad" /></li>
             <li ><p className="info-detail-propiedades">{data.tipo_imagen}</p></li>
           </ul>
           <button

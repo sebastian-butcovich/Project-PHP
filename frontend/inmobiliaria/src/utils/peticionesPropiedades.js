@@ -19,7 +19,7 @@ export async function agregarPropiedad(datosInput,datosCheckbox,datosSelect){
                 cantidad_dias:datosInput.cantidad_dias,
                 valor_noche:datosInput.valor_noche,
                 imagen:datosInput.imagen,
-                tipo_imagen:"png"            
+                tipo_imagen:datosInput.tipo_imagen            
             }
         })
         return data.status;
@@ -77,9 +77,11 @@ export async function buscarPropiedadDisponible(){
     return propiedades_disponibles.data.OK;
 }
 export async function editarPropiedad(datosInputText,datosInputCheckBox,datosInputSelect){
+   try{
     const response = await axios({
+        timeout:10000,
         method:"put",
-        url:"http://localhost:80/propiedades/editar",
+        url:"http://localhost:80/propiedades",
         params:{
             id:datosInputText.id
         },
@@ -96,10 +98,15 @@ export async function editarPropiedad(datosInputText,datosInputCheckBox,datosInp
                 "cantidad_dias":datosInputText.cantidad_dias,
                 "valor_noche":datosInputText.valor_noche,
                 "imagen":datosInputText.imagen,
-                "tipo_imagen":"jpg"
+                "tipo_imagen":datosInputText.tipo_imagen
         }
     })
     return(response.status);
+   }catch(error)
+   {
+        console.log(error);
+        //return error.response.status;
+   }
 }
 export async function peticionEliminarPropiedad(id){
     const response = await axios({
